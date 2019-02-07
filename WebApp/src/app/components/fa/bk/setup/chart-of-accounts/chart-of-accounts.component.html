@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    Finance <mat-icon>navigate_next</mat-icon> 
+    Book Keeping <mat-icon>navigate_next</mat-icon><strong>Chart of Accounts</strong>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<form #f="ngForm" fxLayoutAlign="center center">
+  <mat-card class="cardForm">
+    <mat-card-title>Chart of Accounts</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+            {{node.filename}} : {{node.type}}
+          </mat-tree-node>
+
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            {{node.filename}} : {{node.type}}
+          </mat-tree-node>
+        </mat-tree>
+      </section>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+      <button mat-raised-button type="button" color="warn" [routerLink]="['/']" routerLinkActive="router-link-active">Cancel</button>
+      <button mat-raised-button type="button" color="warn" [routerLink]="['/coanew']" routerLinkActive="router-link-active">Add</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,13 @@
+.cardForm{
+    margin: 20px;
+}
+
+mat-tree {
+    min-width: 300px;
+}
+
+mat-toolbar-row {
+    background-color:white;
+    max-height: 50px;
+    font-size: small;
+}

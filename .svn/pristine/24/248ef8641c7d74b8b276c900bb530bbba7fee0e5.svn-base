@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" mat-elevation-z2>
+    <!-- First toolbar -->
+    <!-- <mat-toolbar-row [class.mat-elevation-z2]="true"> -->
+        <!-- side navigation -->
+        <div fxHide.gt-xs>
+            <button mat-icon-button (click)="onToggleSidenav()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <!-- Company Logo -->
+        <div>
+            <button mat-button routerLink="/">
+                <mat-icon class="mat-icon-logo" svgIcon="logo"></mat-icon>
+            </button>
+            <button mat-icon-button (click)="onToggleSidenav()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <!-- Right Side Menus -->
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+            <button mat-icon-button>
+                <mat-icon>search</mat-icon>
+            </button>
+            <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+                    <li>
+                        <button mat-button [routerLink]="['/']" routerLinkActive="router-link-active">Home</button>
+                    </li>
+                    <li>
+                        <button mat-button [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</button>
+                    </li>
+                    <li>
+                        <button mat-button [routerLink]="['/signup']" routerLinkActive="router-link-active">Sign Up</button>
+                    </li>
+                </ul>
+        </div>
+    <!-- </mat-toolbar-row> -->
+</mat-toolbar>

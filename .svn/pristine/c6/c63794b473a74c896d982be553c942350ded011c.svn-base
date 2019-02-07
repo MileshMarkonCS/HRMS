@@ -1,0 +1,41 @@
+<form #f="ngForm" (ngSubmit)="submit(f)" fxLayoutAlign="center center">
+  <mat-card class="cardForm">
+    <mat-card-title>Log In</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput placeholder="Your email" type="email" email required maxlength="255" #emailInput="ngModel"
+            (ngModel)="pModel.username" name="username">
+          <mat-error *ngIf="emailInput.hasError('required')">Email cannot be blank!</mat-error>
+          <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Your password" type="password" required minlength="8" maxlength="50"
+            #passwordInput="ngModel" (ngModel)="pModel.password" name="password">
+          <mat-error>Should be at least 8 characters long.</mat-error>
+        </mat-form-field>
+      </section>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+      <button mat-raised-button type="button" color="warn" [routerLink]="['/']" routerLinkActive="router-link-active">Cancel</button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <section fxLayoutAlign="center center" style="padding-bottom: 10px;">
+        Don't Have An Account?<a mat-button [routerLink]="['/signup']" routerLinkActive="router-link-active">Sign Up
+          here</a>
+      </section>
+      <section style="padding-bottom: 10px; padding-left: 20px; padding-right: 20px">
+        <div>
+          <a mat-button [routerLink]="['/signup']" routerLinkActive="router-link-active">Forgot password?</a>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+          <a mat-button [routerLink]="['/signup']" routerLinkActive="router-link-active">Forgot user name?</a>
+        </div>
+      </section>
+      <section fxLayoutAlign="center center" style="padding-bottom: 10px;">
+        <a mat-button [routerLink]="['/verifyemailmobile']" routerLinkActive="router-link-active">Verify Email & Mobile No.?</a>
+      </section>
+    </mat-card-footer>
+  </mat-card>
+</form>

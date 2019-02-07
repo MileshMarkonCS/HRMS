@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+mat-toolbar-row {
+    background-color:white;
+    max-height: 50px;
+    font-size: small;
+}
+
+.mat-row.hovered {
+    background: #eee;
+  }
+  
+  .mat-row.highlighted {
+    background: #999;
+  }
+
+//   .mat-dialog-container  {
+//     padding: 0px;
+// }

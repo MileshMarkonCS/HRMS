@@ -1,0 +1,5 @@
+<mat-toolbar>
+  <mat-toolbar-row style="background-color:white;max-height: 50px;">
+    Dashboard
+  </mat-toolbar-row>
+</mat-toolbar>

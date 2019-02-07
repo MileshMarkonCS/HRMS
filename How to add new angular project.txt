@@ -1,0 +1,262 @@
+ng new web --skip-npm
+npm install typescript
+
+ng -v -- use to check all versions
+
+
+I will start steps one by one in this.
+
+Update Angular CLI
+-------------------------------------------
+npm uninstall -g angular-cli
+npm cache clean or npm cache verify (if npm > 5)
+npm install -g @angular/cli@latest
+
+If not able to install the Angular with npm then do following:
+--------------------------------------------------------------
+$ npm config set proxy http://:@:
+$ npm config set https-proxy http://:@:
+
+
+
+Update All Packages using following all commands
+--------------------------------------------------
+npm i -g npm-check-updates
+npm-check-updates -u
+npm install
+
+
+Step - 1
+
+Install Angular Material
+
+npm install --save @angular/material @angular/cdk @angular/animations
+or
+npm install --save @angular/material@7.0.0-rc.1
+npm install --save @angular/cdk@7.0.0-rc.1
+npm install --save @angular/animations@7.0.0-rc.1
+
+
+How to host Angular Material Icons offline?
+
+Install Angular Material Icons
+
+npm install material-design-icons
+
+Open angular.json file from root folder and add following line  in "styles": []
+
+
+
+"styles": [	
+
+	"./node_modules/material-design-icons/iconfont/material-icons.css"
+
+],
+
+
+
+Step - 2
+
+Add following lines app.module.ts
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+......
+
+imports: [
+.....
+BrowserAnimationsModule
+]
+
+Step - 3
+
+npm i hammerjs --save
+
+Step - 4
+
+npm install @auth0/angular-jwt
+
+
+add following lines in app.module.ts
+
+import { JwtModule } from '@auth0/angular-jwt';
+.....
+.....
+export function getAccessToken(): string {
+  return localStorage.getItem('BuddhiStar_token');
+}
+
+export const jwtConfig = {
+  tokenGetter: getAccessToken,
+  whiteListedDomains: ['localhost:4200']
+};
+.....
+
+imports: [
+.....
+JwtModule.forRoot({
+      config: jwtConfig
+    }),
+]
+
+
+Step - 5
+Add following lines in App.Module.ts
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+............
+imports: [
+.....
+FormsModule,
+ReactiveFormsModule
+]
+
+Step - 6
+Add following lines in App.Module.ts
+import { HttpModule } from '@angular/http';
+............
+imports: [
+.....
+HttpModule
+]
+
+
+Step - 7
+
+npm install --save @angular/flex-layout@latest
+
+
+Add following lines in App.Module.ts
+import { FlexLayoutModule } from '@angular/flex-layout';
+............
+imports: [
+.....
+FlexLayoutModule,
+]
+
+Step - 8
+Add following lines in App.Module.ts
+import { HttpClientModule } from '@angular/common/http';
+
+imports: [
+.....
+
+    HttpClientModule,
+	............
+]	
+
+Step - 9
+
+Add following lines in app.module.ts
+
+import { DatePipe } from '@angular/common';
+
+ providers: [
+ ............
+ ............
+ DatePipe,
+ ..........
+ ..........
+ ]
+
+Step - 10
+Instal Chart.JS
+
+npm install chart.js --save -g
+
+Add following in dashboard
+
+import * as Chart from 'chart.js'
+
+
+
+Troubleshoot
+------------
+--------------------------------------------------------------------------------------------
+Error : getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+
+Solution:
+
+make sure you have internet connection: ping 8.8.8.8
+make sure you have DNS resolver working: ping www.google.com
+make sure you can access registry.npmjs.org: ping registry.npmjs.org
+make sure you can connect via https.
+Try in your browser: https://registry.npmjs.org/
+
+Make sure you are trying to connect to:
+
+registry.npmjs.org
+and not to:
+
+"registry.npmjs.org registry.npmjs.org:443"
+or some other weird string composed of few hostnames, because it's weird that the resolver complains about a hostnames that includes a port number, which it shouldn't care about. Ok, I tested and it should look like this for hosts that are not found.
+
+Update
+From your comment to this answer it seems that you are not directly connected to the internet if you can't even ping 8.8.8.8.
+
+If you are using a proxy to access the Web, then you also have to configure npm to use it. Use:
+
+npm config set proxy http://example.com:8080
+npm config set https-proxy http://example.com:8080
+but instead of http://example.com:8080 use what you actually need in your company - ask someone or see how your browser is configured.
+
+To see your proxy configuration in Chrome, see this.
+
+Update 2
+If you can access https://registry.npmjs.org/ in your browser but you cannot run ping registry.npmjs.org then it means that your browser must be configured to use a proxy, or other programs than your browser must be restricted from using the internet.
+
+In any case, you should ask someone in your company about it because most likely you either need to use a specific proxy or someone needs to lift the restriction from your npm and allow it to access the network.
+
+The network access can be blocked by a firewall installed on your computer or a router in your network. It's hard to say without knowing the specific configuration in your company.
+--------------------------------------------------------------------------------------------
+Error: Reset NPM registry
+Solution: 
+npm config rm registry
+
+--------------------------------------------------------------------------------------------
+Error: Node registry error at the time of installation
+Solution:
+Open the command prompt with admin privileges and follow the below steps:
+
+1) Clear the npm cache using the following command:
+
+npm cache clean --force
+
+or
+
+npm cache verify
+
+2) Remove the .npm directory and the node_modules directory.
+
+3) Also, Remove following:
+
+C:\Users\username\AppData\Roaming\npm\ and
+C:\Users\username\AppData\Roaming\npm-cache
+4) Set npm registry to the public repository using the following command:
+
+npm config set registry http://registry.npmjs.org/.
+
+5) Try running curl https://registry.npmjs.org/package-name from your terminal to make sure that network call is not blocking the package requests to npm registry.
+
+If you are running behind a proxy, then you also have to configure npm to use it. You can set using:
+
+npm config set proxy http://proxyhost:proxyport
+
+npm config set http-proxy http://proxyhost:proxyport
+
+npm config set https-proxy http://proxyhost:proxyport
+--------------------------------------------------------------------------------------------
+Error: Clean cache
+Solution:
+npm cache clean --force
+or
+npm cache verify
+--------------------------------------------------------------------------------------------
+Error: npm ERR! code ERR_TLS_CERT_ALTNAME_INVALID
+Solution:
+npm config set strict-ssl false
+--------------------------------------------------------------------------------------------
+Error: npm ERR! code ETARGET
+Solution
+npm install @angular/cli@latest

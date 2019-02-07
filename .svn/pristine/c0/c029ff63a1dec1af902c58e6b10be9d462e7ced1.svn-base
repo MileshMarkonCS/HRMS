@@ -1,0 +1,128 @@
+<form #ledgerForm="ngForm" (ngSubmit)="onSubmit(ledgerForm.value)">
+  <mat-card class="cardMain">
+    <mat-card-title>{{dialog_title}}</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center top">
+        <mat-card class="cardForm">
+          <mat-card-content>
+            <section fxLayout="column">
+              <!-- Ledger code -->
+              <mat-form-field>
+                <input matInput name="ledgerCode" placeholder="Code" type="text" required maxlength="10" #codeInput="ngModel"
+                  [(ngModel)]="pModel.ledgerCode" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="codeInput.hasError('required')">Code cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Ledger -->
+              <mat-form-field>
+                <input matInput name="ledger" placeholder="Ledger" type="text" required maxlength="100" #ledgerInput="ngModel"
+                  [(ngModel)]="pModel.ledger" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="ledgerInput.hasError('required')">Ledger cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Ledger Type -->
+              <mat-form-field>
+                <mat-select placeholder="Type" required #ledgerTypeInput="ngModel" [(ngModel)]="pModel.ledgerTypeId"
+                  name="ledgerTypeId" [(value)]="pModel.ledgerTypeId" (selectionChange)="onLedgerType(pModel.ledgerTypeId)"
+                  [disabled]="pModel.readOnly">
+                  <mat-option *ngFor="let item of pLedgerTypes" [value]="item.id">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="ledgerTypeInput.hasError('required')">Type cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Ledger group flag -->
+              <mat-checkbox name="ledgerGroupFlag" [(ngModel)]="pModel.ledgerGroupFlag" 
+              (change)="onLedgerGroupFlagChange($event.checked)" 
+              [disabled]="pModel.readOnly">Group</mat-checkbox>
+              <!-- Ledger group -->
+              <mat-form-field>
+                <input [formControl]="ledgerGroup" type="text" placeholder="Select Group" maxlength="100" required
+                  matInput [matAutocomplete]="autoLedgerGroup" [readonly]="pModel.readOnly">
+                <mat-autocomplete #autoLedgerGroup="matAutocomplete">
+                  <mat-option *ngFor="let item of pLedgerGroups | async; let index = index" [value]="item.name" 
+                  (onSelectionChange)="onLedgerGroupChange(item.id)">
+                    {{ item.name | titlecase}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <!-- Magin Ledger group -->
+              <mat-form-field>
+                <mat-select placeholder="Main Group" required #mainLedgerGroupInput="ngModel" [(ngModel)]="pModel.mainLedgerGroupId"
+                  name="mainLedgerGroupId" [(value)]="pModel.mainLedgerGroupId">
+                  <mat-option *ngFor="let item of pMainLedgerGroups" [value]="item.id" [disabled]="true">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="mainLedgerGroupInput.hasError('required')">Main group cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- No JV Posting flag -->
+              <mat-checkbox name="noJVPosting" [(ngModel)]="pModel.noJVPosting" [disabled]="pModel.readOnly || pDisableControls">No JV
+                Posting</mat-checkbox>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="cardForm">
+          <mat-card-content>
+            <section fxLayout="column">
+              <!-- Control Account -->
+              <mat-form-field>
+                <mat-select placeholder="Control Account" required #controlAccountInput="ngModel" [(ngModel)]="pModel.controlAccountId"
+                  name="controlAccountId" [(value)]="pModel.controlAccountId"
+                  [disabled]="pModel.readOnly || pDisableControls || pDisableControlAccount">
+                  <mat-option *ngFor="let item of pControlAccounts" [value]="item.id">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="controlAccountInput.hasError('required')">Control account cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Automateic Posting -->
+              <mat-form-field>
+                <mat-select placeholder="Automatic Posting" required #automaticPostingInput="ngModel" [(ngModel)]="pModel.automaticPostingId"
+                  name="automaticPostingId" [(value)]="pModel.automaticPostingId" 
+                  [disabled]="pModel.readOnly || pDisableControls || pDisableAutomaticPosting">
+                  <mat-option *ngFor="let item of pAutomaticPostings" [value]="item.id">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="automaticPostingInput.hasError('required')">Automatic posting cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Currency -->
+              <mat-form-field>
+                <mat-select placeholder="Currency" required #currencyInput="ngModel" [(ngModel)]="pModel.currencyId"
+                  name="currencyId" [(value)]="pModel.currencyId" [disabled]="pModel.readOnly || pDisableControls">
+                  <mat-option *ngFor="let item of pCurrencies" [value]="item.id">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="currencyInput.hasError('required')">Currency cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Effective From -->
+              <mat-form-field>
+                <input matInput [matDatepicker]="effectiveFrom" placeholder="Effective From" (ngModel)="pModel.effectiveFrom"
+                  name="effectiveFrom" required #effectiveFrom="ngModel" [readonly]="pModel.readOnly || pDisableControls" 
+                  [disabled]="pModel.readOnly || pDisableControls">
+                <mat-datepicker-toggle matSuffix [for]="effectiveFrom"></mat-datepicker-toggle>
+                <mat-datepicker #effectiveFrom></mat-datepicker>
+              </mat-form-field>
+              <!-- Effective To -->
+              <mat-form-field>
+                <input matInput [matDatepicker]="effectiveTo" placeholder="Effective To" (ngModel)="pModel.effectiveTo"
+                  name="effectiveTo" required #effectiveTo="ngModel" [readonly]="pModel.readOnly || pDisableControls" 
+                  [disabled]="pModel.readOnly || pDisableControls">
+                <mat-datepicker-toggle matSuffix [for]="effectiveTo"></mat-datepicker-toggle>
+                <mat-datepicker #effectiveTo></mat-datepicker>
+              </mat-form-field>
+              <!-- active flag -->
+              <mat-checkbox name="active" [(ngModel)]="pModel.active" [disabled]="pModel.readOnly">Active</mat-checkbox>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button *ngIf="pModel.entryMode=='A' || pModel.entryMode=='E'" mat-raised-button color="success" [disabled]="ledgerForm.invalid"
+        type="submit">Submit</button>
+      <button *ngIf="pModel.entryMode=='D'" mat-raised-button color="warn" [disabled]="ledgerForm.invalid" type="submit">Delete</button>
+      <button mat-raised-button type="button" color="warn" (click)="onCancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

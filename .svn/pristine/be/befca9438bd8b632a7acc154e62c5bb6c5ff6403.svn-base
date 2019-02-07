@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    Finance <mat-icon>navigate_next</mat-icon>
+    Book Keeping <mat-icon>navigate_next</mat-icon><strong>Chart of Accounts</strong>
+  </mat-toolbar-row>
+</mat-toolbar>
+<form>
+  <mat-card class="cardForm">
+    <mat-card-title>New Account</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput placeholder="Main Group" type="text" required maxlength="100" #maingroupInput="ngModel"
+            (ngModel)="pModel.maingroup" name="maingroup">
+          <mat-error *ngIf="maingroupInput.hasError('required')">Main group cannot be blank!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Group" type="text" required maxlength="100" #groupInput="ngModel" (ngModel)="pModel.group"
+            name="group">
+          <mat-error *ngIf="maingroupInput.hasError('required')">Group cannot be blank!</mat-error>
+        </mat-form-field>
+        <mat-checkbox>Ledger Group</mat-checkbox>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</form>

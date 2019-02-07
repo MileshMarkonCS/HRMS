@@ -1,0 +1,47 @@
+<form #currencyForm="ngForm" (ngSubmit)="onSubmit(currencyForm.value)">
+  <mat-card class="cardMain">
+    <mat-card-title>{{dialog_title}}</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center top">
+        <mat-card class="cardForm">
+          <mat-card-content>
+            <section fxLayout="column">
+              <!-- Code -->
+              <mat-form-field>
+                <input matInput name="currencyCode" placeholder="Code" type="text" required maxlength="10" #codeInput="ngModel"
+                  [(ngModel)]="pModel.currencyCode" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="codeInput.hasError('required')">Code cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Currency -->
+              <mat-form-field>
+                <input matInput name="currency" placeholder="Currency" type="text" required maxlength="100" #currencyInput="ngModel"
+                  [(ngModel)]="pModel.currency" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="currencyInput.hasError('required')">Currency cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Description -->
+              <mat-form-field>
+                <input matInput name="description" placeholder="Description" type="text" required maxlength="500" #descriptionInput="ngModel"
+                  [(ngModel)]="pModel.description" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="descriptionInput.hasError('required')">Description cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- Symbol -->
+              <mat-form-field>
+                <input matInput name="currencySymbol" placeholder="Symbol" type="text" required maxlength="10" #currencySymbolInput="ngModel"
+                  [(ngModel)]="pModel.currencySymbol" [readonly]="pModel.readOnly">
+                <mat-error *ngIf="currencySymbolInput.hasError('required')">Symbol cannot be blank!</mat-error>
+              </mat-form-field>
+              <!-- active flag -->
+              <mat-checkbox name="active" [(ngModel)]="pModel.active" [disabled]="pModel.readOnly">Active</mat-checkbox>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button *ngIf="pModel.entryMode=='A' || pModel.entryMode=='E'" mat-raised-button color="success" [disabled]="currencyForm.invalid"
+        type="submit">Submit</button>
+      <button *ngIf="pModel.entryMode=='D'" mat-raised-button color="warn" [disabled]="currencyForm.invalid" type="submit">Delete</button>
+      <button mat-raised-button type="button" color="warn" (click)="onCancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

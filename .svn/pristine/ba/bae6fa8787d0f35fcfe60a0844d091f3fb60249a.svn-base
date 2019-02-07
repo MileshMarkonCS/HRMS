@@ -1,0 +1,25 @@
+<form #f="ngForm" (ngSubmit)="changePassword(f)" fxLayoutAlign="center center">
+  <mat-card class="cardForm">
+    <mat-card-title>Change Password</mat-card-title>
+    <mat-card-content>
+      <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field hintLabel="Should be at least 8 characters long.">
+          <input type="password" matInput placeholder="Your password" (ngModel)="pModel.password" name="password"
+            required minlength="8" maxlength="30" #passwordInput="ngModel">
+          <mat-hint align="end">{{passwordInput.value?.length}}</mat-hint>
+          <mat-error>Should be at least 8 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Confirm password" (ngModel)="pModel.confirmpassword" name="confirmpassword"
+            required minlength="8" maxlength="30" #configmrpasswordInput="ngModel">
+          <mat-hint align="end">{{configmrpasswordInput.value?.length}}</mat-hint>
+          <mat-error *ngIf="passwordInput != configmrpasswordInput">Confirm password not matching with password</mat-error>
+        </mat-form-field>
+      </section>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+      <button mat-raised-button type="button" color="warn" [routerLink]="['/']" routerLinkActive="router-link-active">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,14 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+        <!-- <app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list> -->
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!-- before login system show normal menu  -->
+        <app-landing-menu *ngIf="!isLoggedIn()"></app-landing-menu>
+        <!-- After login system show logged in menu  -->
+        <app-menu-bar *ngIf="isLoggedIn()"></app-menu-bar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

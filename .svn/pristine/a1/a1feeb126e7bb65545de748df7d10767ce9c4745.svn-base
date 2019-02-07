@@ -1,0 +1,79 @@
+<mat-toolbar>
+  <mat-toolbar-row style="background-color:white;max-height: 50px;">
+    <section>
+      Security > Admin > Currency
+    </section>
+    <section fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs fxLayoutGap="10px">
+      <button mat-button color="primary" (click)="onAdd()" [disabled]="!screenRights.createFlag">Add</button>
+      <button mat-button color="primary" (click)="openEntry()">Filter</button>
+      <button mat-button color="primary" (click)="onSort()">Sort</button>
+      <button mat-button color="primary" (click)="openEntry()" [disabled]="!screenRights.printFlag">Print</button>
+      <button mat-button color="primary" (click)="refreshMe()">Refresh</button>
+      <mat-form-field [ngStyle]="{'float':'right', 'margin-right':'60px'}">
+        <input matInput (keyup)="applyFilter($event.target.value)">
+        <mat-placeholder>
+          <mat-icon>search</mat-icon>
+        </mat-placeholder>
+      </mat-form-field>
+    </section>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <Section [ngClass]="['custom-table-container']"> -->
+<Section class="table-container" mat-elevation-z8>
+  <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%">
+    <!-- Code Column -->
+    <ng-container matColumnDef="currencyCode">
+      <mat-header-cell *matHeaderCellDef>Code</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{row.currencyCode}}</mat-cell>
+    </ng-container>
+    <!-- Currency Column -->
+    <ng-container matColumnDef="currency">
+      <mat-header-cell *matHeaderCellDef>Currency</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{row.currency}}</mat-cell>
+    </ng-container>
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{row.description}}</mat-cell>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="currencySymbol">
+      <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{row.currencySymbol}}</mat-cell>
+    </ng-container>
+    <!-- active Column -->
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">
+        <mat-checkbox checked="{{row.active}}" [disabled]="true"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <!-- edit Column -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" (click)="onEdit(row.currencyId)" [disabled]="!screenRights.editFlag">
+          <mat-icon small class="mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <!-- view Column -->
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef>View</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row"><button mat-icon-button color="primary" (click)="onView(row.currencyId)"
+          [disabled]="!screenRights.viewFlag">
+          <mat-icon small class="mat-icon material-icons" role="img" aria-hidden="true" color="primary">visibility</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+      [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" 
+      (click)="row.highlighted = !row.highlighted" 
+      (mouseover)="row.hovered = true" 
+      (mouseout)="row.hovered = false"></mat-row>
+  </mat-table>
+</Section>
+<mat-paginator [length]="totalRecords" [pageSize]="recordsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="paginatoryOperation($event)" showFirstLastButtons>
+</mat-paginator>
