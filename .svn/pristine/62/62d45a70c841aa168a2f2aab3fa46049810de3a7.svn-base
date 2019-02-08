@@ -1,0 +1,18 @@
+﻿{
+  "AppSettings": {
+    "Token": "AlMamoun Industrial & TradingCoLTd",
+    "LandingUrl": "http://localhost:4200/",
+    "ApplicationName": "AMT.ERP"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "DatabaseConnection": "Data Source=196.29.169.131; UID=markoncs; Password=Mar@123; Database=AMTDev;MultipleActiveResultSets=true;"
+    //"DatabaseConnection": "Data Source=.\\SQLEXPRESS; Trusted_Connection=True; Database=AMTDEV;MultipleActiveResultSets=true;"
+  }
+}

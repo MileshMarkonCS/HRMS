@@ -1,0 +1,18 @@
+{
+  "AppSettings": {
+    "Token": "AlMamoun Industrial & TradingCoLTd",
+    "LandingUrl": "http://localhost:4200/",
+    "ApplicationName": "AMT.ERP"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    },
+    "ConnectionStrings": {
+      //  "DatabaseConnection": "Data Source=196.29.169.131; UID=devappuser; Password=devappuser; Database=AMTDev;MultipleActiveResultSets=true;"
+      //"DatabaseConnection": "Data Source=.\\SQLEXPRESS; Trusted_Connection=True; Database=AMTDEV;MultipleActiveResultSets=true;"
+      "DatabaseConnection": "Data Source=196.29.169.131; UID=markoncs; Password=Mar@123; Database=AMTDev;MultipleActiveResultSets=true;"
+    }
+  },
+  "AllowedHosts": "*"
+}
