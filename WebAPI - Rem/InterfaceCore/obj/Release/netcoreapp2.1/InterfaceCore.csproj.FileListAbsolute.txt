@@ -1,0 +1,17 @@
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\InterfaceCore.deps.json
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\InterfaceCore.runtimeconfig.json
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\InterfaceCore.runtimeconfig.dev.json
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\InterfaceCore.dll
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\InterfaceCore.pdb
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\ModelCore.dll
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\bin\Release\netcoreapp2.1\ModelCore.pdb
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.csprojAssemblyReference.cache
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.csproj.CoreCompileInputs.cache
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.RazorAssemblyInfo.cache
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.RazorAssemblyInfo.cs
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.AssemblyInfoInputs.cache
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.AssemblyInfo.cs
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.RazorTargetAssemblyInfo.cache
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.csproj.CopyComplete
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.dll
+D:\SrinivasMP\Projects\AMT\WebAPI\InterfaceCore\obj\Release\netcoreapp2.1\InterfaceCore.pdb
